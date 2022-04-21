@@ -7,7 +7,10 @@ export const config = {
   host     : process.env.DB_SERVER,
   user     : process.env.DB_USERNAME,
   password : process.env.DB_PASSOWRD,
-  database : process.env.DB_DATEBASE
+  database : process.env.DB_DATEBASE,
+  api: {
+    prefix: '/',
+  },
 
   // port: process.env.PORT,
   // secretKey: process.env.SECRET_KEY,

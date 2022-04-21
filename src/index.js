@@ -20,27 +20,27 @@ app.use('/', (req, res, next) => {
 });
 
 /* Api Router */
-// app.use(config.api.prefix, router);
-app.use('/', router);
+app.use(config.api.prefix, router);
+// app.use('/', router);
 
-/* Swagger 세팅 
+/* Swagger 세팅 */
 import { swaggerUi, specs } from './swagger/swagger.js';
 app.use(
   '/api-docs',
   swaggerUi.serve,
   swaggerUi.setup(specs, { explorer: true })
-);*/
+);
 
-/* 404 표시 
+/* 404 표시 */
 app.use((req, res, next) => {
   return jsonRes(res.status(404), { success: false, status: { code: 404, message: "Invalid route", detail: req.url } });
-});*/
+});
 
-/* error 표시 
+/* error 표시 */
 app.use(function (error, req, res, next) {
   let { message, detail } = error;
   return jsonRes(res.status(500), { success: false, status: { code: 500, message, detail } });
-});*/
+});
 
 /* Server Start */
 app.listen('3000', () =>{

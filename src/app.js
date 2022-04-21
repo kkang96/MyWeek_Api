@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 export default { 
   setup: (config) => {
@@ -16,6 +17,8 @@ export default {
       );
       next();
     });
+    
+    app.use(cors());
 
     return app;
   }
