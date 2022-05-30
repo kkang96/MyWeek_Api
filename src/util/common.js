@@ -14,13 +14,7 @@ const resultRes = (res, result) => {
 };
 
 // 응답값 json 형태 및 Date Type 포맷 변경
-const jsonRes = (
-  res,
-  {
-    status = { code: 200, message: 'Api Request Success', detail },
-    data = null,
-  }
-) => {
+const jsonRes = (res,{status = { code: 200, message: 'Api Request Success', detail },data = null,}) => {
   let logData = null;
 
   if (data) {
