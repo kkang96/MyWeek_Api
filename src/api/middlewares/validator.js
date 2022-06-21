@@ -33,6 +33,6 @@ const validReq = (schema) => {
   };
 };
 
-export  {
+export {
   validReq,
 };
