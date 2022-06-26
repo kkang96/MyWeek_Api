@@ -20,16 +20,8 @@ app.use('/', (req, res, next) => {
 });
 
 /* Api Router */
-app.use(config.api.prefix, router);
-// app.use('/', router);
-
-/* Swagger 세팅 */
-import { swaggerUi, specs } from './swagger/swagger.js';
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(specs, { explorer: true })
-);
+// app.use(config.api.prefix, router);
+app.use('/', router);
 
 /* 404 표시 */
 app.use((req, res, next) => {

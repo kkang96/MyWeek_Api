@@ -6,5 +6,7 @@ import validReq from '../../middlewares/validator.js';
 
 export const testRouter = express.Router();
 
-testRouter.post('/test1', validReq(schemas.memList), wrapAsync(testController.postTest));
-testRouter.get('/test2', validReq(schemas.memList),wrapAsync(testController.getTest));
+// testRouter.post('/test1', validReq(schemas.memList), wrapAsync(testController.postTest));
+testRouter.post('/test1', testController.postTest);
+testRouter.get('/test2', testController.getTest);
+// testRouter.get('/test2', validReq(schemas.memList),wrapAsync(testController.getTest));
