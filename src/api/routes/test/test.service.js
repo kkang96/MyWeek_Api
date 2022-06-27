@@ -7,6 +7,7 @@ export default {
   },
   getTest: async (param) => {
     const result = await testData.getTestDB(param);
+    console.log('service계층', result);
     return result;
   }
 }

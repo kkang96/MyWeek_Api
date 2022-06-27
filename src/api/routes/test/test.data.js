@@ -7,28 +7,26 @@ export default {
 
   },
   getTestDB: async (param) => {
-    
-    let jsonRes = { status : null, data : { list: []  } };  
+    let jsonRes = { status : null, data : {  } };  
     try {
-      connection.connect();
-
-      connection.query('SELECT * from MYWEEK_MEMBER', function (error, results, fields) {
-        const rowcnt = results.recordset.length;
-        if (rowcnt > 1){
-          jsonRes.data.list = results.recordset;
+      await connection.connect();
+      await connection.query('SELECT * from MYWEEK_MEMBER', function (error, results, fields) {
+        if (error) throw error;
+        const rowcnt = results.length;
+        if (rowcnt > 0) {
           jsonRes.status = DB_STATUS.SUCCESS;
+          let resultArray = Object.values(JSON.parse(JSON.stringify(results)));
+          jsonRes.data = resultArray;
         } else {
           jsonRes.status = DB_STATUS.NO_DATA;
         }
       });
+      console.log(jsonRes);
       connection.end();
-      
     } catch(err) {
       console.log(`err - ${err}`);
       jsonRes.status = DB_STATUS.FAILUE;
     }
-    
     return jsonRes;
   }
-
 }
