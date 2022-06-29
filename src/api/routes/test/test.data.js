@@ -3,14 +3,16 @@ import { connection } from '../../../db/dbconnect.js';
 import { DB_STATUS } from '../../../constants/constants.js';
 
 export default {
-  postTestDB: async (param1, param2, param3) => {
+  postTestDB: (param1, param2, param3) => {
 
   },
-  getTestDB: async (param) => {
+  getTestDB: (param) => {
     let jsonRes = { status : null, data : {  } };  
     try {
-      await connection.connect();
-      await connection.query('SELECT * from MYWEEK_MEMBER', function (error, results, fields) {
+      connection.connect();
+
+      // https://flymogi.tistory.com/60
+      connection.query('SELECT * from MYWEEK_MEMBER', (error, results, fields) => {
         if (error) throw error;
         const rowcnt = results.length;
         if (rowcnt > 0) {
@@ -20,8 +22,9 @@ export default {
         } else {
           jsonRes.status = DB_STATUS.NO_DATA;
         }
+        return results;
       });
-      console.log(jsonRes);
+
       connection.end();
     } catch(err) {
       console.log(`err - ${err}`);
